@@ -2,7 +2,7 @@
 
 import Ship from "../src/shipLogic";
 
-test("hit a ship an indefinite amount of times", () => {
+test("hit count updates correctly", () => {
   const ship = Ship(3);
 
   expect(ship.hit()).toEqual(1);
