@@ -56,7 +56,14 @@ main {
 .player-board,
 .cpu-board {
   display: grid;
-  grid-template-columns: repeat(10, minmax(20px, 1fr));
+  grid-template-columns: auto repeat(10, minmax(20px, 1fr));
+  grid-template-columns: auto repeat(10, minmax(20px, 1fr));
+
+  max-width: 500px;
+
+  margin-left: -15px;
+
+  gap: 1px;
 
   justify-self: center;
 }
@@ -66,19 +73,58 @@ main {
   justify-content: center;
   align-items: center;
 
-  cursor: pointer;
+  aspect-ratio: 1;
+
   padding: 20px;
+
+  cursor: pointer;
   border: 1px solid #dedcd9;
 }
 
 .coordinate:hover {
-  background-color: #dedcd957;
+  background-color: #adadac7a;
 }
 
 .player-name {
   font-size: 1.3em;
 
   margin-bottom: -15px;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+
+  text-align: center;
+
+  color: rgb(155, 147, 136);
+}
+
+.row-label {
+  grid-column: 1;
+
+  color: #c4b8ad;
+
+  margin-right: 5px;
+}
+
+.col-labels {
+  grid-column: 2 / -1;
+  grid-row: 1;
+
+  display: flex;
+  justify-content: space-around;
+
+  margin-bottom: 5px;
+}
+
+.col-label {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
