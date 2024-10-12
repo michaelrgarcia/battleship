@@ -2,10 +2,262 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template</title>
+    <title>Battleship</title>
   </head>
   <body>
+    <header>
+      <h1>Battleship</h1>
+    </header>
+    <main>
+      <p class="player-name">Player (you)</p>
+      <div class="player-board">
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+      </div>
+      <p class="player-name">Computer</p>
+      <div class="cpu-board">
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+        <div class="row">
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+          <div class="coordinate"></div>
+        </div>
+      </div>
+    </main>
     <script src="main.js"></script>
   </body>
 </html>
