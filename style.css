@@ -47,10 +47,17 @@ h1 {
 
 main {
   margin-top: 25px;
-
   padding-bottom: 50px;
 
   gap: 30px;
+
+  transition: 0.5s;
+
+  user-select: none;
+}
+
+main[aria-disabled="true"] {
+  opacity: 0.15;
 }
 
 .player-board,
@@ -77,11 +84,14 @@ main {
 
   padding: 20px;
 
-  cursor: pointer;
   border: 1px solid #dedcd9;
 }
 
-.coordinate:hover {
+main[aria-disabled="false"] .coordinate {
+  cursor: pointer;
+}
+
+main[aria-disabled="false"] .coordinate:hover {
   background-color: #adadac7a;
 }
 
@@ -125,6 +135,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.placed-ship {
+  background-color: red;
 }
 
 @media only screen and (max-width: 600px) {
