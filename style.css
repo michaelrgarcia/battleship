@@ -92,7 +92,20 @@ p:nth-child(4) {
 }
 
 .cpu-board .coordinate:hover {
-  background-color: #adadac5b;
+  background-color: #adadac83;
+}
+
+.cpu-board .coordinate.hit,
+.cpu-board .coordinate.miss {
+  cursor: default;
+}
+
+.cpu-board .coordinate.hit {
+  background-color: #c22c2cab;
+}
+
+.cpu-board .coordinate.miss {
+  background-color: #55794e79;
 }
 
 .player-name {
