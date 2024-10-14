@@ -30,7 +30,11 @@ export default function Gameboard() {
         (element) => JSON.stringify(element) === JSON.stringify(coordinate),
       );
 
-      boardCoord.push(ship);
+      if (boardCoord.length < 3) {
+        boardCoord.push(ship);
+      }
+
+      
 
       /*
 
