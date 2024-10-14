@@ -68,14 +68,11 @@ main {
   gap: 1px;
 
   justify-self: center;
-
-  transition: 0.5s ease transform;
 }
 
 .cpu-board,
-p:nth-child(5) {
+p:nth-child(4) {
   display: none;
-  opacity: 0;
 }
 
 .coordinate {
@@ -95,7 +92,7 @@ p:nth-child(5) {
 }
 
 .cpu-board .coordinate:hover {
-  background-color: #adadac2d;
+  background-color: #adadac5b;
 }
 
 .player-name {
@@ -150,19 +147,34 @@ p:nth-child(5) {
   font-style: italic;
 }
 
-#shuffle {
+#shuffle,
+#go {
   padding: 10px 50px;
   border-radius: 8px;
   border: none;
 
   color: #e7e6e5;
-  background-color: #0195ff;
 
   font-size: 1.3em;
 }
 
+#shuffle {
+  background-color: #0195ff;
+
+  margin-right: 30px;
+}
+
+#go {
+  background-color: rgb(71, 66, 14);
+}
+
 #shuffle:hover {
   background-color: rgb(27, 73, 173);
+  cursor: pointer;
+}
+
+#go:hover {
+  background-color: rgba(71, 66, 14, 0.5);
   cursor: pointer;
 }
 
