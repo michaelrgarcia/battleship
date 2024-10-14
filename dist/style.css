@@ -47,17 +47,12 @@ h1 {
 
 main {
   margin-top: 25px;
-  padding-bottom: 50px;
 
   gap: 30px;
 
-  transition: 0.5s;
+  transition: 1s;
 
   user-select: none;
-}
-
-main[aria-disabled="true"] {
-  opacity: 0.15;
 }
 
 .player-board,
@@ -73,6 +68,14 @@ main[aria-disabled="true"] {
   gap: 1px;
 
   justify-self: center;
+
+  transition: 0.5s ease transform;
+}
+
+.cpu-board,
+p:nth-child(5) {
+  display: none;
+  opacity: 0;
 }
 
 .coordinate {
@@ -92,7 +95,11 @@ main[aria-disabled="false"] .coordinate {
 }
 
 main[aria-disabled="false"] .coordinate:hover {
-  background-color: #adadac7a;
+  background-color: #adadac2d;
+}
+
+main[aria-disabled="false"] .coordinate.placed-ship:hover {
+  background-color: #adadacb9;
 }
 
 .player-name {
@@ -138,7 +145,29 @@ main[aria-disabled="false"] .coordinate:hover {
 }
 
 .placed-ship {
-  background-color: red;
+  background-color: #a3a3a1;
+}
+
+.game-info {
+  margin-bottom: -15px;
+
+  font-style: italic;
+}
+
+#shuffle {
+  padding: 10px 50px;
+  border-radius: 8px;
+  border: none;
+
+  color: #e7e6e5;
+  background-color: #0195ff;
+
+  font-size: 1.3em;
+}
+
+#shuffle:hover {
+  background-color: rgb(27, 73, 173);
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

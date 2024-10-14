@@ -10,7 +10,10 @@
     <header>
       <h1>Battleship</h1>
     </header>
-    <main aria-disabled="false">
+    <main>
+      <p class="game-info">
+        Click the shuffle button to place the ships to your liking.
+      </p>
       <p class="player-name">Player (you):</p>
       <div class="player-board">
         <div class="label"></div>
@@ -147,6 +150,7 @@
         <div class="coordinate" data-x="9" data-y="10"></div>
         <div class="coordinate" data-x="10" data-y="10"></div>
       </div>
+      <button type="button" id="shuffle">Shuffle</button>
       <p class="player-name">Computer:</p>
       <div class="cpu-board">
         <div class="label"></div>
