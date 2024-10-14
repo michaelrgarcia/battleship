@@ -4,6 +4,9 @@ import { RealPlayer, CpuPlayer } from "./gameLogic/playerLogic";
 const player = RealPlayer();
 const playerDomBoard = document.querySelector(".player-board");
 
+const shuffle = document.getElementById("shuffle");
+const go = document.getElementById("go");
+
 player.board.placeShip([
   [2, 2],
   [2, 3],
@@ -35,3 +38,18 @@ cpu.board.placeShip([
 ]);
 
 renderBoard(cpu.board.getBoard(), cpuDomBoard);
+
+shuffle.addEventListener("click", () => {
+  const playerName = document.querySelector("p:nth-child(2)");
+  const cpuName = document.querySelector("p:nth-child(4)");
+
+  cpuName.style.display = "block";
+  cpuDomBoard.style.display = "grid";
+
+  playerName.style.display = "none";
+  playerDomBoard.style.display = "none";
+});
+
+go.addEventListener("click", () => {
+  shuffle.style.display = "none";
+});
