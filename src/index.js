@@ -1,4 +1,5 @@
 import renderBoard from "./domLogic/boardRender";
+import startGame from "./domLogic/domGameController";
 import { RealPlayer, CpuPlayer } from "./gameLogic/playerLogic";
 
 const player = RealPlayer();
@@ -37,9 +38,11 @@ cpu.board.placeShip([
   [5, 10],
 ]);
 
-renderBoard(cpu.board.getBoard(), cpuDomBoard);
-
 shuffle.addEventListener("click", () => {
+  // shuffling code. will be located in player logic
+});
+
+go.addEventListener("click", () => {
   const playerName = document.querySelector("p:nth-child(2)");
   const cpuName = document.querySelector("p:nth-child(4)");
 
@@ -48,8 +51,8 @@ shuffle.addEventListener("click", () => {
 
   playerName.style.display = "none";
   playerDomBoard.style.display = "none";
-});
 
-go.addEventListener("click", () => {
   shuffle.style.display = "none";
+
+  startGame(player, cpu);
 });
