@@ -1,8 +1,8 @@
-function getDomCoordinates(board, domBoard) {
+function getDomCoordinates(coordArray, domBoard) {
   const domCoordinates = [];
 
-  for (let i = 0; i < board.length; i += 1) {
-    const coordinate = board[i];
+  for (let i = 0; i < coordArray.length; i += 1) {
+    const coordinate = coordArray[i];
     const [x, y] = coordinate;
 
     if (coordinate.length > 2) {
@@ -24,12 +24,28 @@ function getDomCoordinates(board, domBoard) {
   return domCoordinates;
 }
 
-export default function renderBoard(board, domBoard) {
-  const domCoordinates = getDomCoordinates(board, domBoard);
+export function renderMisses(board, domBoard) {
+  const missedAttacks = board.getMissedAttacks();
+
+  const missCoords = getDomCoordinates(missedAttacks, domBoard);
+
+  for (let i = 0; i < missCoords.length; i += 1) {
+    const missCoord = missCoords[i];
+
+    missCoord.setAttribute("id", "miss");
+  }
+}
+
+export function renderBoard(board, domBoard) {
+  const gameBoard = board.getBoard();
+
+  const domCoordinates = getDomCoordinates(gameBoard, domBoard);
 
   for (let i = 0; i < domCoordinates.length; i += 1) {
     const domCoordinate = domCoordinates[i];
 
     domCoordinate.classList.add("placed-ship");
   }
+
+  renderMisses(board, domBoard);
 }
