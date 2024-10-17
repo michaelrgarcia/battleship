@@ -1,5 +1,5 @@
 import { renderBoard, renderMisses } from "./boardRender";
-import { addBoardListener } from "./gameEventListeners";
+import { addBoardListener, removeBoardListener } from "./gameEventListeners";
 
 const cpuDomBoard = document.querySelector(".cpu-board");
 const playerDomBoard = document.querySelector(".player-board");
@@ -40,6 +40,8 @@ export default function startGame(player, cpu) {
 
     playerShotHandler(domCoordinate, cpuBoard);
     renderMisses(cpuBoard, cpuDomBoard);
+
+    removeBoardListener(cpuDomBoard, shootingLogic);
   }
 
   addBoardListener(cpuDomBoard, shootingLogic);
