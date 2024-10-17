@@ -7,6 +7,7 @@ const playerDomBoard = document.querySelector(".player-board");
 
 const shuffle = document.getElementById("shuffle");
 const go = document.getElementById("go");
+const next = document.getElementById("next");
 
 player.board.placeShip([
   [2, 2],
@@ -55,4 +56,9 @@ go.addEventListener("click", () => {
   shuffle.style.display = "none";
 
   startGame(player, cpu);
+
+  go.style.display = "none";
+
+  next.style.display = "block";
+  next.style.opacity = 1;
 });
