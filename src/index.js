@@ -1,4 +1,4 @@
-import renderBoard from "./domLogic/boardRender";
+import { renderBoard } from "./domLogic/boardRender";
 import startGame from "./domLogic/domGameController";
 import { RealPlayer, CpuPlayer } from "./gameLogic/playerLogic";
 
@@ -21,7 +21,7 @@ player.board.placeShip([
   [5, 7],
 ]);
 
-renderBoard(player.board.getBoard(), playerDomBoard);
+renderBoard(player.board, playerDomBoard);
 
 const cpu = CpuPlayer();
 const cpuDomBoard = document.querySelector(".cpu-board");
