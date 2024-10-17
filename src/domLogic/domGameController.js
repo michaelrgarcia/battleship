@@ -1,46 +1,48 @@
+import { renderBoard, renderMisses } from "./boardRender";
+import { addBoardListener } from "./gameEventListeners";
+
 const cpuDomBoard = document.querySelector(".cpu-board");
 const playerDomBoard = document.querySelector(".player-board");
 
 const gameInfo = document.querySelector(".game-info");
 
-function playerShotHandler(cpu) {
-  cpuDomBoard.addEventListener("click", (e) => {
-    const coordinate = e.target;
+function playerShotHandler(coordinate, cpuBoard) {
+  const { x, y } = coordinate.dataset;
 
-    if (
-      !(
-        coordinate.classList.contains("hit") ||
-        coordinate.classList.contains("miss")
-      )
-    ) {
-      const { x, y } = coordinate.dataset;
+  const hit = cpuBoard.receiveAttack([Number(x), Number(y)]); // thanks JavaScript :)
 
-      const shot = cpu.board.receiveAttack([Number(x), Number(y)]); // thanks JavaScript :)
+  if (
+    !(
+      coordinate.classList.contains("hit") ||
+      coordinate.classList.contains("miss")
+    )
+  ) {
+    if (hit.hitLocation) {
+      coordinate.classList.add("hit");
 
-      if (typeof shot === "number") {
-        coordinate.classList.add("hit");
-
-        gameInfo.textContent = "Hit!";
-      } else if (Array.isArray(shot)) {
-        coordinate.classList.add("miss");
-
-        gameInfo.textContent = "Miss.";
-      }
-
-      // add a disabled state to the gameboard
+      gameInfo.textContent = "Hit!";
+    } else if (!hit.hitLocation) {
+      gameInfo.textContent = "Miss.";
     }
-  });
+
+    cpuDomBoard.setAttribute("aria-disabled", "true");
+  }
 }
 
 export default function startGame(player, cpu) {
-  let shipsSunk = false;
+  const playerBoard = player.board;
+  const cpuBoard = cpu.board;
 
-  while (shipsSunk === false) {
-    gameInfo.textContent = "Take your shot.";
-    playerShotHandler(cpu);
+  gameInfo.textContent = "Take your shot.";
 
-    shipsSunk = true;
+  function shootingLogic(e) {
+    const domCoordinate = e.target;
+
+    playerShotHandler(domCoordinate, cpuBoard);
+    renderMisses(cpuBoard, cpuDomBoard);
   }
+
+  addBoardListener(cpuDomBoard, shootingLogic);
 
   // will "reassign" next button's event listener to control different stages
 }
