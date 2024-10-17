@@ -1,45 +1,73 @@
-function getDomCoordinates(coordArray, domBoard) {
-  const domCoordinates = [];
+function getBoardDomMatch(boardCoord, domBoard) {
+  const [x, y] = boardCoord;
+
+  const coordinates = domBoard.querySelectorAll(".coordinate");
+
+  let coordinateElement;
+
+  for (let i = 0; i < coordinates.length; i += 1) {
+    coordinateElement = coordinates[i];
+
+    if (
+      Number(coordinateElement.dataset.x) === x &&
+      Number(coordinateElement.dataset.y) === y
+    ) {
+      return coordinateElement;
+    }
+  }
+
+  return null;
+}
+
+function getShipCoordinates(coordArray, domBoard) {
+  const shipCoordinates = [];
 
   for (let i = 0; i < coordArray.length; i += 1) {
     const coordinate = coordArray[i];
-    const [x, y] = coordinate;
 
     if (coordinate.length > 2) {
-      const coordinates = domBoard.querySelectorAll(".coordinate");
+      const coordinateElement = getBoardDomMatch(coordinate, domBoard);
 
-      for (let j = 0; j < coordinates.length; j += 1) {
-        const coordinateElement = coordinates[j];
-
-        if (
-          Number(coordinateElement.dataset.x) === x &&
-          Number(coordinateElement.dataset.y) === y
-        ) {
-          domCoordinates.push(coordinateElement);
-        }
+      if (coordinateElement) {
+        shipCoordinates.push(coordinateElement);
       }
     }
   }
 
-  return domCoordinates;
+  return shipCoordinates;
+}
+
+function getMissCoordinates(coordArray, domBoard) {
+  const missCoordinates = [];
+
+  for (let i = 0; i < coordArray.length; i += 1) {
+    const coordinate = coordArray[i];
+
+    const coordinateElement = getBoardDomMatch(coordinate, domBoard);
+
+    if (coordinateElement) {
+      missCoordinates.push(coordinateElement);
+    }
+  }
+
+  return missCoordinates;
 }
 
 export function renderMisses(board, domBoard) {
   const missedAttacks = board.getMissedAttacks();
-
-  const missCoords = getDomCoordinates(missedAttacks, domBoard);
+  const missCoords = getMissCoordinates(missedAttacks, domBoard);
 
   for (let i = 0; i < missCoords.length; i += 1) {
     const missCoord = missCoords[i];
 
-    missCoord.setAttribute("id", "miss");
+    missCoord.classList.add("miss");
   }
 }
 
 export function renderBoard(board, domBoard) {
   const gameBoard = board.getBoard();
 
-  const domCoordinates = getDomCoordinates(gameBoard, domBoard);
+  const domCoordinates = getShipCoordinates(gameBoard, domBoard);
 
   for (let i = 0; i < domCoordinates.length; i += 1) {
     const domCoordinate = domCoordinates[i];
