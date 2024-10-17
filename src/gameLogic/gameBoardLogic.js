@@ -51,6 +51,8 @@ export default function Gameboard() {
   }
 
   function receiveAttack(coordinates) {
+    let hitLocation;
+
     for (let i = 0; i < board.length; i += 1) {
       const boardCoord = board[i];
       const filteredCoord = boardCoord.filter(
@@ -62,14 +64,17 @@ export default function Gameboard() {
         boardCoord.length > 2
       ) {
         const ship = boardCoord[2]; // ships are always the 3rd element
+        hitLocation = filteredCoord
 
-        return ship.hit();
+        ship.hit();
       }
     }
 
-    missedAttacks.push(coordinates);
-
-    return missedAttacks;
+    if (!hitLocation) {
+      missedAttacks.push(coordinates); 
+    }
+    
+    return { hitLocation };
   }
 
   function allShipsSunk() {
@@ -92,5 +97,9 @@ export default function Gameboard() {
     return board;
   }
 
-  return { placeShip, receiveAttack, allShipsSunk, getBoard };
+  function getMissedAttacks() {
+    return missedAttacks;
+  }
+
+  return { placeShip, receiveAttack, allShipsSunk, getBoard, getMissedAttacks };
 }
