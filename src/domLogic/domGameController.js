@@ -1,8 +1,15 @@
 import { renderBoard, renderMisses } from "./boardRender";
-import { addBoardListener, removeBoardListener } from "./gameEventListeners";
+import {
+  addBoardListener,
+  addNextBtnListener,
+  removeBoardListener,
+  removeNextBtnListener,
+} from "./gameEventListeners";
 
 const cpuDomBoard = document.querySelector(".cpu-board");
 const playerDomBoard = document.querySelector(".player-board");
+
+const nextBtn = document.getElementById("next");
 
 const gameInfo = document.querySelector(".game-info");
 
@@ -33,20 +40,32 @@ export default function startGame(player, cpu) {
   const playerBoard = player.board;
   const cpuBoard = cpu.board;
 
-  gameInfo.textContent = "Take your shot.";
-
   function shootingLogic(e) {
     const domCoordinate = e.target;
 
     playerShotHandler(domCoordinate, cpuBoard);
     renderMisses(cpuBoard, cpuDomBoard);
 
-    removeBoardListener(cpuDomBoard, shootingLogic);
+    removeBoardListener(cpuDomBoard, shootingLogic); // stops after one shot
+
+    nextBtn.setAttribute("aria-disabled", "false");
   }
+
+  function cpuShootingLogic() {
+    removeNextBtnListener(nextBtn, cpuShootingLogic);
+  }
+
+  nextBtn.setAttribute("aria-disabled", "true");
+
+  gameInfo.textContent = "Take your shot.";
 
   addBoardListener(cpuDomBoard, shootingLogic);
 
-  // will "reassign" next button's event listener to control different stages
+  if (cpuDomBoard.getAttribute("aria-disabled") === "true") {
+    addNextBtnListener(nextBtn, cpuShootingLogic);
+  }
+
+  // addNextListener will trigger a CPU shot
 }
 
 // will need to create new player and cpu objects!!
