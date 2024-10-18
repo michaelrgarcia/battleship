@@ -177,7 +177,7 @@ p:nth-child(4) {
 
 #shuffle:hover,
 #go:hover,
-#next:hover {
+#next[aria-disabled="false"]:hover {
   cursor: pointer;
 }
 
@@ -199,15 +199,22 @@ p:nth-child(4) {
   background-color: rgba(71, 66, 14, 0.5);
 }
 
-#next {
+#next[aria-disabled="false"] {
   display: none;
-  opacity: 0;
 
   background-color: #298f6d;
 }
 
-#next:hover {
+#next[aria-disabled="false"]:hover {
   background-color: #56a88d;
+}
+
+#next[aria-disabled="true"] {
+  background-color: #298f6d;
+
+  opacity: 0.25;
+
+  cursor: not-allowed;
 }
 
 @media only screen and (max-width: 600px) {
