@@ -37,8 +37,8 @@ function getShipCoordinates(coordArray, domBoard) {
   return shipCoordinates;
 }
 
-function getMissCoordinates(coordArray, domBoard) {
-  const missCoordinates = [];
+function getDomCoordinates(coordArray, domBoard) {
+  const domCoordinates = [];
 
   for (let i = 0; i < coordArray.length; i += 1) {
     const coordinate = coordArray[i];
@@ -46,21 +46,32 @@ function getMissCoordinates(coordArray, domBoard) {
     const coordinateElement = getBoardDomMatch(coordinate, domBoard);
 
     if (coordinateElement) {
-      missCoordinates.push(coordinateElement);
+      domCoordinates.push(coordinateElement);
     }
   }
 
-  return missCoordinates;
+  return domCoordinates;
 }
 
 export function renderMisses(board, domBoard) {
   const missedAttacks = board.getMissedAttacks();
-  const missCoords = getMissCoordinates(missedAttacks, domBoard);
+  const missCoords = getDomCoordinates(missedAttacks, domBoard);
 
   for (let i = 0; i < missCoords.length; i += 1) {
     const missCoord = missCoords[i];
 
     missCoord.classList.add("miss");
+  }
+}
+
+export function renderHits(board, domBoard) {
+  const successfulAttacks = board.getSuccessfulAttacks();
+  const hitCoords = getDomCoordinates(successfulAttacks, domBoard);
+
+  for (let i = 0; i < hitCoords.length; i += 1) {
+    const hitCoord = hitCoords[i];
+
+    hitCoord.classList.add("hit");
   }
 }
 
@@ -76,6 +87,7 @@ export function renderBoard(board, domBoard) {
   }
 
   renderMisses(board, domBoard);
+  renderHits(board, domBoard);
 }
 
 export function showDomBoard(playerName, playerDomBoard) {
