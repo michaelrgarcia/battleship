@@ -15,6 +15,7 @@ export default function Gameboard() {
     ]; 
 
   const missedAttacks = []; // array of coordinates
+  const successfulAttacks = [];
 
   function placeShip(coordinatesArray) {
     const shipLength = coordinatesArray.length;
@@ -61,7 +62,7 @@ export default function Gameboard() {
 
       if (
         JSON.stringify(coordinates) === JSON.stringify(filteredCoord) &&
-        boardCoord.length > 2
+        boardCoord.length > 2 &&  !(successfulAttacks.includes(filteredCoord))
       ) {
         const ship = boardCoord[2]; // ships are always the 3rd element
         hitLocation = filteredCoord
@@ -72,6 +73,8 @@ export default function Gameboard() {
 
     if (!hitLocation) {
       missedAttacks.push(coordinates); 
+    } else {
+      successfulAttacks.push(coordinates);
     }
     
     return { hitLocation };
@@ -101,5 +104,9 @@ export default function Gameboard() {
     return missedAttacks;
   }
 
-  return { placeShip, receiveAttack, allShipsSunk, getBoard, getMissedAttacks };
+  function getSuccessfulAttacks() {
+    return successfulAttacks;
+  }
+
+  return { placeShip, receiveAttack, allShipsSunk, getBoard, getMissedAttacks, getSuccessfulAttacks };
 }
