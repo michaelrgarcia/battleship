@@ -65,7 +65,7 @@ export default function Gameboard() {
         boardCoord.length > 2 &&  !(successfulAttacks.includes(filteredCoord))
       ) {
         const ship = boardCoord[2]; // ships are always the 3rd element
-        hitLocation = filteredCoord
+        hitLocation = coordinates;
 
         ship.hit();
       }
@@ -77,7 +77,7 @@ export default function Gameboard() {
       successfulAttacks.push(coordinates);
     }
     
-    return { hitLocation };
+    return hitLocation;
   }
 
   function allShipsSunk() {
