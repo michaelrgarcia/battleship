@@ -3,7 +3,10 @@ import {
   renderBoard,
   showDomBoard,
 } from "./domLogic/boardRender";
-import startGame from "./domLogic/domGameController";
+import {
+  activatePlayerShooting,
+  playerTurn,
+} from "./domLogic/domGameController";
 import { RealPlayer, CpuPlayer } from "./gameLogic/playerLogic";
 
 const player = RealPlayer();
@@ -47,6 +50,8 @@ shuffle.addEventListener("click", () => {
   // shuffling code. will be located in player logic
 });
 
+activatePlayerShooting(cpu.board, cpuDomBoard);
+
 go.addEventListener("click", () => {
   const playerName = document.querySelector("p:nth-child(2)");
   const cpuName = document.querySelector("p:nth-child(4)");
@@ -59,5 +64,13 @@ go.addEventListener("click", () => {
 
   next.style.display = "block";
 
-  startGame(player, cpu);
+  playerTurn(cpu.board);
+});
+
+next.addEventListener("click", () => {
+  if (!cpuDomBoard.ariaDisabled) {
+    playerTurn(cpu.board);
+  }
+
+  console.log("cpu turn");
 });
