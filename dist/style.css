@@ -87,12 +87,12 @@ p:nth-child(4) {
   border: 1px solid #dedcd9;
 }
 
-.cpu-board:enabled .coordinate:hover {
+.cpu-board[aria-disabled="false"] .coordinate:hover {
   background-color: #adadac83;
   cursor: pointer;
 }
 
-.cpu-board:disabled .coordinate:hover {
+.cpu-board[aria-disabled="true"] .coordinate:hover {
   cursor: default;
 }
 
