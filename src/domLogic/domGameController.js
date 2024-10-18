@@ -1,48 +1,51 @@
-import { renderBoard, renderHits, renderMisses } from "./boardRender";
-import { activateCpuTurn, activatePlayerTurn } from "./gameEventListeners";
+/* eslint-disable no-param-reassign */
 
-const cpuDomBoard = document.querySelector(".cpu-board");
+import { renderBoard, renderHits, renderMisses } from "./boardRender";
+
 const playerDomBoard = document.querySelector(".player-board");
+const cpuDomBoard = document.querySelector(".cpu-board");
 
 const nextBtn = document.getElementById("next");
 
 const gameInfo = document.querySelector(".game-info");
 
-function playerShotHandler(coordinate, cpuBoard) {
-  const { x, y } = coordinate.dataset;
-
-  const hit = cpuBoard.receiveAttack([Number(x), Number(y)]); // thanks JavaScript :)
-
-  if (
-    !(
-      coordinate.classList.contains("hit") ||
-      coordinate.classList.contains("miss")
-    )
-  ) {
-    if (hit.hitLocation) {
-      gameInfo.textContent = "Hit!";
-    } else if (!hit.hitLocation) {
-      gameInfo.textContent = "Miss.";
-    }
-
-    cpuDomBoard.setAttribute("aria-disabled", "true");
+function announceHitStatus(hit) {
+  if (hit) {
+    gameInfo.textContent = "Hit!";
+  } else {
+    gameInfo.textContent = "Miss.";
   }
 }
 
-export default function startGame(player, cpu) {
-  const playerBoard = player.board;
-  const cpuBoard = cpu.board;
-
-  nextBtn.setAttribute("aria-disabled", "true");
-
+export function playerTurn(cpuBoard) {
   renderHits(cpuBoard, cpuDomBoard);
   renderMisses(cpuBoard, cpuDomBoard);
 
   gameInfo.textContent = "Take your shot.";
 
-  activatePlayerTurn(cpuBoard, playerShotHandler, renderHits, renderMisses);
+  cpuDomBoard.setAttribute("aria-disabled", "false");
+  nextBtn.disabled = true;
+}
 
-  if (cpuDomBoard.getAttribute("aria-disabled") === "true") {
-    activateCpuTurn();
-  }
+export function activatePlayerShooting(cpuBoard) {
+  cpuDomBoard.addEventListener("click", (e) => {
+    if (cpuDomBoard.ariaDisabled === "false") {
+      const domCoordinate = e.target;
+
+      const { x, y } = domCoordinate.dataset;
+      const hit = cpuBoard.receiveAttack([Number(x), Number(y)]); // thanks JavaScript :)
+
+      renderHits(cpuBoard, cpuDomBoard);
+      renderMisses(cpuBoard, cpuDomBoard);
+
+      announceHitStatus(hit);
+
+      cpuDomBoard.setAttribute("aria-disabled", "true");
+      nextBtn.disabled = false;
+    }
+  });
+}
+
+function cpuShotHandler(cpu, playerBoard) {
+  const hit = cpu.randomShot(playerBoard);
 }
