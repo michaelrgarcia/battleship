@@ -77,3 +77,19 @@ export function renderBoard(board, domBoard) {
 
   renderMisses(board, domBoard);
 }
+
+export function showDomBoard(playerName, playerDomBoard) {
+  const name = playerName;
+  const domBoard = playerDomBoard;
+
+  name.style.display = "block";
+  domBoard.style.display = "grid";
+}
+
+export function hideDomBoard(playerName, playerDomBoard) {
+  const name = playerName;
+  const domBoard = playerDomBoard;
+
+  name.style.display = "none";
+  domBoard.style.display = "none";
+}

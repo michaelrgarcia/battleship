@@ -1,4 +1,8 @@
-import { renderBoard } from "./domLogic/boardRender";
+import {
+  hideDomBoard,
+  renderBoard,
+  showDomBoard,
+} from "./domLogic/boardRender";
 import startGame from "./domLogic/domGameController";
 import { RealPlayer, CpuPlayer } from "./gameLogic/playerLogic";
 
@@ -47,18 +51,13 @@ go.addEventListener("click", () => {
   const playerName = document.querySelector("p:nth-child(2)");
   const cpuName = document.querySelector("p:nth-child(4)");
 
-  cpuName.style.display = "block";
-  cpuDomBoard.style.display = "grid";
-
-  playerName.style.display = "none";
-  playerDomBoard.style.display = "none";
+  showDomBoard(cpuName, cpuDomBoard);
+  hideDomBoard(playerName, playerDomBoard);
 
   shuffle.style.display = "none";
-
-  startGame(player, cpu);
-
   go.style.display = "none";
 
   next.style.display = "block";
-  next.style.opacity = 1;
+
+  startGame(player, cpu);
 });
