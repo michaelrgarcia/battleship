@@ -13,6 +13,7 @@ const playerName = document.querySelector("p:nth-child(2)");
 const cpuName = document.querySelector("p:nth-child(4)");
 
 const nextBtn = document.getElementById("next");
+const playAgainBtn = document.getElementById("play-again");
 
 const gameInfo = document.querySelector(".game-info");
 
@@ -32,6 +33,22 @@ function announceHitStatus(hit) {
   }
 }
 
+function checkGameEnd(cpuBoard, playerBoard) {
+  const cpuShipsGone = cpuBoard.allShipsSunk();
+  const plrShipsGone = playerBoard.allShipsSunk();
+
+  if (cpuShipsGone || plrShipsGone) {
+    nextBtn.style.display = "none";
+    playAgainBtn.style.display = "block";
+
+    if (cpuShipsGone) {
+      gameInfo.textContent = "All computer ships sank. Game over!";
+    } else {
+      gameInfo.textContent = "All of your ships sank. Game over!";
+    }
+  }
+}
+
 function cpuShotHandler(cpu, playerBoard) {
   const hit = cpu.randomShot(playerBoard);
 
@@ -43,7 +60,7 @@ function cpuShotHandler(cpu, playerBoard) {
   nextBtn.disabled = false;
 }
 
-export function activatePlayerShooting(cpuBoard) {
+export function activatePlayerShooting(cpuBoard, playerBoard) {
   cpuDomBoard.addEventListener("click", (e) => {
     if (cpuDomBoard.ariaDisabled === "false") {
       const domCoordinate = e.target;
@@ -58,6 +75,8 @@ export function activatePlayerShooting(cpuBoard) {
 
       allowCpuTurn();
       nextBtn.disabled = false;
+
+      checkGameEnd(cpuBoard, playerBoard);
     }
   });
 }
@@ -90,4 +109,6 @@ export function cpuTurn(cpu, playerBoard) {
   };
 
   setTimeout(shot, 1500);
+
+  checkGameEnd(cpu.board, playerBoard);
 }
