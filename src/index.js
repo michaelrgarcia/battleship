@@ -69,7 +69,13 @@ go.addEventListener("click", () => {
 });
 
 next.addEventListener("click", () => {
-  if (cpuDomBoard.ariaDisabled === "false") {
+  function playerTurnAllowed() {
+    const allowed = cpuDomBoard.ariaDisabled === "false";
+
+    return allowed;
+  }
+
+  if (playerTurnAllowed()) {
     playerTurn(cpu.board);
   } else {
     cpuTurn(cpu, player.board);
