@@ -6,6 +6,10 @@ function Player() {
   return { board };
 }
 
+function randomIntOnInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 export function RealPlayer() {
   const { board } = Player();
 
@@ -15,7 +19,14 @@ export function RealPlayer() {
 export function CpuPlayer() {
   const { board } = Player();
 
-  // selecting logic goes here
+  function randomShot(playerBoard) {
+    const randomXCoord = randomIntOnInterval(1, 10);
+    const randomYCoord = randomIntOnInterval(1, 10);
 
-  return { board };
+    const hit = playerBoard.receiveAttack([randomXCoord, randomYCoord]);
+
+    return hit;
+  }
+
+  return { board, randomShot };
 }
