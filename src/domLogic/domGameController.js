@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 import {
   hideDomBoard,
   renderBoard,
@@ -71,10 +69,10 @@ export function playerTurn(cpuBoard) {
   renderHits(cpuBoard, cpuDomBoard);
   renderMisses(cpuBoard, cpuDomBoard);
 
-  gameInfo.textContent = "Take your shot.";
-
   allowPlayerTurn();
   nextBtn.disabled = true;
+
+  gameInfo.textContent = "Take your shot.";
 }
 
 export function cpuTurn(cpu, playerBoard) {
