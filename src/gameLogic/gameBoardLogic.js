@@ -62,7 +62,8 @@ export default function Gameboard() {
 
       if (
         JSON.stringify(coordinates) === JSON.stringify(filteredCoord) &&
-        boardCoord.length > 2 &&  !(successfulAttacks.includes(filteredCoord))
+        boardCoord.length > 2 &&  !(successfulAttacks.includes(filteredCoord)) 
+        && !(missedAttacks.includes(filteredCoord))
       ) {
         const ship = boardCoord[2]; // ships are always the 3rd element
         hitLocation = coordinates;
