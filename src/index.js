@@ -5,6 +5,7 @@ import {
 } from "./domLogic/boardRender";
 import {
   activatePlayerShooting,
+  cpuTurn,
   playerTurn,
 } from "./domLogic/domGameController";
 import { RealPlayer, CpuPlayer } from "./gameLogic/playerLogic";
@@ -68,9 +69,9 @@ go.addEventListener("click", () => {
 });
 
 next.addEventListener("click", () => {
-  if (!cpuDomBoard.ariaDisabled) {
+  if (cpuDomBoard.ariaDisabled === "false") {
     playerTurn(cpu.board);
+  } else {
+    cpuTurn(cpu, player.board);
   }
-
-  console.log("cpu turn");
 });
