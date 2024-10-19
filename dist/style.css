@@ -163,7 +163,8 @@ p:nth-child(4) {
 
 #shuffle,
 #go,
-#next {
+#next,
+#play-again {
   padding: 10px 50px;
   border-radius: 8px;
   border: none;
@@ -177,7 +178,8 @@ p:nth-child(4) {
 
 #shuffle:hover,
 #go:hover,
-#next:enabled:hover {
+#next:enabled:hover,
+#play-again:hover {
   cursor: pointer;
 }
 
@@ -215,6 +217,16 @@ p:nth-child(4) {
   opacity: 0.25;
 
   cursor: not-allowed;
+}
+
+#play-again {
+  display: none;
+
+  background-color: #62eead91;
+}
+
+#play-again:hover {
+  background-color: #a2e2c4b6;
 }
 
 @media only screen and (max-width: 600px) {
