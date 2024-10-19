@@ -101,11 +101,11 @@ p:nth-child(4) {
   cursor: default;
 }
 
-.cpu-board .coordinate.hit {
+.coordinate.hit {
   background-color: #c22c2cab;
 }
 
-.cpu-board .coordinate.miss {
+.coordinate.miss {
   background-color: #4d7ba085;
 }
 
