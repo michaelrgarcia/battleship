@@ -51,7 +51,7 @@ shuffle.addEventListener("click", () => {
   // shuffling code. will be located in player logic
 });
 
-activatePlayerShooting(cpu.board, cpuDomBoard);
+activatePlayerShooting(cpu.board, player.board);
 
 go.addEventListener("click", () => {
   const playerName = document.querySelector("p:nth-child(2)");
