@@ -60,27 +60,6 @@ function cpuShotHandler(cpu, playerBoard) {
   nextBtn.disabled = false;
 }
 
-export function activatePlayerShooting(cpuBoard, playerBoard) {
-  cpuDomBoard.addEventListener("click", (e) => {
-    if (cpuDomBoard.ariaDisabled === "false") {
-      const domCoordinate = e.target;
-
-      const { x, y } = domCoordinate.dataset;
-      const hit = cpuBoard.receiveAttack([Number(x), Number(y)]); // thanks JavaScript :)
-
-      renderHits(cpuBoard, cpuDomBoard);
-      renderMisses(cpuBoard, cpuDomBoard);
-
-      announceHitStatus(hit);
-
-      allowCpuTurn();
-      nextBtn.disabled = false;
-
-      checkGameEnd(cpuBoard, playerBoard);
-    }
-  });
-}
-
 export function playerTurn(cpuBoard) {
   showDomBoard(cpuName, cpuDomBoard);
   hideDomBoard(playerName, playerDomBoard);
@@ -92,6 +71,34 @@ export function playerTurn(cpuBoard) {
   nextBtn.disabled = true;
 
   gameInfo.textContent = "Take your shot.";
+}
+
+export function activatePlayerShooting(cpuBoard, playerBoard) {
+  cpuDomBoard.addEventListener("click", (e) => {
+    if (cpuDomBoard.ariaDisabled === "false") {
+      const domCoordinate = e.target;
+
+      if (
+        domCoordinate.classList.contains("hit") ||
+        domCoordinate.classList.contains("miss")
+      ) {
+        gameInfo.textContent = "Please choose another coordinate.";
+      } else {
+        const { x, y } = domCoordinate.dataset;
+        const hit = cpuBoard.receiveAttack([Number(x), Number(y)]); // thanks JavaScript :)
+
+        renderHits(cpuBoard, cpuDomBoard);
+        renderMisses(cpuBoard, cpuDomBoard);
+
+        announceHitStatus(hit);
+
+        allowCpuTurn();
+        nextBtn.disabled = false;
+
+        checkGameEnd(cpuBoard, playerBoard);
+      }
+    }
+  });
 }
 
 export function cpuTurn(cpu, playerBoard) {
