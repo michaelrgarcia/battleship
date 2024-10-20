@@ -105,3 +105,20 @@ export function hideDomBoard(playerName, playerDomBoard) {
   name.style.display = "none";
   domBoard.style.display = "none";
 }
+
+export function clearDomBoard(domBoard) {
+  const coordinates = domBoard.querySelectorAll(".coordinate");
+
+  for (let i = 0; i < coordinates.length; i += 1) {
+    const coordinate = coordinates[i];
+    const classes = coordinate.classList;
+
+    if (
+      classes.contains("placed-ship") ||
+      classes.contains("hit") ||
+      classes.contains("miss")
+    ) {
+      coordinate.classList.remove("placed-ship", "hit", "miss");
+    }
+  }
+}
