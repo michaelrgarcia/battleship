@@ -14,15 +14,12 @@ export default function Gameboard() {
         [1, 10], [2, 10], [3, 10], [4, 10], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10],
     ]; 
 
-  const missedAttacks = []; // array of coordinates
+  const missedAttacks = []; 
   const successfulAttacks = [];
 
   function placeShip(coordinatesArray) {
     const shipLength = coordinatesArray.length;
     const ship = Ship(shipLength);
-
-    // no diagonal ships allowed.
-    // either the same x-value or same y-value in each coordinate is required (will check based on future horizontal / vertical param)
 
     for (let i = 0; i < shipLength; i += 1) {
       const coordinate = coordinatesArray[i];
@@ -31,21 +28,9 @@ export default function Gameboard() {
         (element) => JSON.stringify(element) === JSON.stringify(coordinate),
       );
 
-      if (boardCoord.length < 3) {
+      if (boardCoord && boardCoord.length < 3) {
         boardCoord.push(ship);
       }
-
-      
-
-      /*
-
-            const comparisonCoord = coordinatesArray[i + 1];
-
-            if (coordinate[0] !== comparisonCoord[0] || coordinate[1] !== comparisonCoord[1]) {
-                break;
-            } 
-
-            */
     }
 
     return board;
@@ -109,5 +94,16 @@ export default function Gameboard() {
     return successfulAttacks;
   }
 
-  return { placeShip, receiveAttack, allShipsSunk, getBoard, getMissedAttacks, getSuccessfulAttacks };
+  function clearBoard() {
+    for (let i = 0; i < board.length; i += 1) {
+      const coordinate = board[i];
+
+      if (coordinate.length > 2) {
+        coordinate.pop();
+      }
+      
+    }
+  }
+
+  return { placeShip, receiveAttack, allShipsSunk, getBoard, getMissedAttacks, getSuccessfulAttacks, clearBoard };
 }
