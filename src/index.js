@@ -89,6 +89,10 @@ function newGame(player, cpu, playerDomBoard) {
 
     showDomBoard(playerName, playerDomBoard);
 
+    playAgain.style.display = "none";
+    shuffle.style.display = "block";
+    go.style.display = "block";
+
     gameInfo.textContent =
       "Click the shuffle button to place the ships to your liking.";
   });
