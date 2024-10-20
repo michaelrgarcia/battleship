@@ -92,20 +92,26 @@ p:nth-child(4) {
   cursor: pointer;
 }
 
+.cpu-board[aria-disabled="false"] .hit:hover,
+.cpu-board[aria-disabled="false"] .miss:hover,
 .cpu-board[aria-disabled="true"] .coordinate:hover {
   cursor: default;
 }
 
-.cpu-board .coordinate.hit,
-.cpu-board .coordinate.miss {
-  cursor: default;
-}
-
-.coordinate.hit {
+.hit.placed-ship,
+.hit {
   background-color: #c22c2cab;
 }
 
-.coordinate.miss {
+.cpu-board[aria-disabled="false"] .hit:hover {
+  background-color: #c22c2cab;
+}
+
+.miss {
+  background-color: #4d7ba085;
+}
+
+.cpu-board[aria-disabled="false"] .miss:hover {
   background-color: #4d7ba085;
 }
 
